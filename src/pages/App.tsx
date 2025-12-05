@@ -1,4 +1,4 @@
-import Auth from "@pages/Auth.tsx";
+import Auth from '@pages/Auth.tsx';
 
 function App() {
   return (
