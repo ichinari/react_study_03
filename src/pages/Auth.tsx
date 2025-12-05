@@ -1,16 +1,16 @@
-import { supabase } from "@api/supabase";
-import { useState, useEffect, type FormEvent } from "react";
-import type { EmailOtpType, Session } from "@supabase/supabase-js";
+import { supabase } from '@api/supabase';
+import { useState, useEffect, type FormEvent } from 'react';
+import type { EmailOtpType, Session } from '@supabase/supabase-js';
 
 export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
   const [session, setSession] = useState<Session | null>(null);
-  const [password, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>('');
 
   // Check URL params on initial render
   const params = new URLSearchParams(window.location.search);
-  const hasTokenHash = params.get("token_hash");
+  const hasTokenHash = params.get('token_hash');
 
   const [verifying, setVerifying] = useState<boolean>(!!hasTokenHash);
   const [authError, setAuthError] = useState<string | null>(null);
@@ -19,8 +19,8 @@ export default function App() {
   useEffect(() => {
     // Check if we have token_hash in URL (magic link callback)
     const params = new URLSearchParams(window.location.search);
-    const token_hash = params.get("token_hash");
-    const type = params.get("type") as EmailOtpType | null;
+    const token_hash = params.get('token_hash');
+    const type = params.get('type') as EmailOtpType | null;
 
     if (token_hash && type) {
       // Verify the OTP token
@@ -35,7 +35,7 @@ export default function App() {
           } else {
             setAuthSuccess(true);
             // Clear URL params
-            window.history.replaceState({}, document.title, "/");
+            window.history.replaceState({}, document.title, '/');
           }
           setVerifying(false);
         });
@@ -56,10 +56,6 @@ export default function App() {
     return () => subscription.unsubscribe();
   }, []);
 
-  /*
-   * test
-   * @param {FormEvent<HTMLFormElement>} イベント
-   */
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
@@ -71,23 +67,20 @@ export default function App() {
       });
 
       if (error) {
-        console.error("Auth error:", error);
+        console.error('Auth error:', error);
       }
 
-      setEmail("");
-      setPassword("");
+      setEmail('');
+      setPassword('');
 
-      alert("login success");
+      alert('login success');
     } catch (error) {
-      console.error("Unexpected error:", error);
+      console.error('Unexpected error:', error);
     } finally {
       setLoading(false);
     }
   };
 
-  /*
-   * ログアウト処理
-   * /
   const handleLogout = async () => {
     try {
       const { error } = await supabase.auth.signOut();
@@ -96,7 +89,7 @@ export default function App() {
       }
 
       setSession(null);
-      alert("logout success");
+      alert('logout success');
     } catch (err) {
       console.log(err);
     }
@@ -123,7 +116,7 @@ export default function App() {
         <button
           onClick={() => {
             setAuthError(null);
-            window.history.replaceState({}, document.title, "/");
+            window.history.replaceState({}, document.title, '/');
           }}
         >
           Return to login
