@@ -9,7 +9,7 @@ import {
 
 function Navbar() {
   return (
-    <nav className="flex justify-end items-center h-24 bg-blue-300 gap-3 pr-3">
+    <nav className="flex justify-end items-center h-24 bg-blue-300 gap-3 pr-3 mb-5">
       <Link
         className="text-amber-50 hover:text-blue-800"
         to={routeConfig.home.path}
@@ -17,10 +17,7 @@ function Navbar() {
         <FontAwesomeIcon icon={faHouse} />
         Home
       </Link>
-      <Link
-        className="text-amber-50 hover:text-blue-800"
-        to={routeConfig.list.path}
-      >
+      <Link className="text-amber-50 hover:text-blue-800" to="/">
         <FontAwesomeIcon icon={faFilePen} />
         list
       </Link>
