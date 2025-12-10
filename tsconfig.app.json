@@ -35,7 +35,8 @@
       "@types/*": ["./src/types/*"],
       "@assets/*": ["./src/assets/*"],
       "@constants/*": ["./src/constants/*"],
-    },
+      "@routes/*": ["./src/routes/*"]
+    }
   },
   "include": ["src"]
 }
