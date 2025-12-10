@@ -56,31 +56,6 @@ export default function App() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
-
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        console.error('Auth error:', error);
-      }
-
-      setEmail('');
-      setPassword('');
-
-      alert('login success');
-    } catch (error) {
-      console.error('Unexpected error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleLogout = async () => {
     try {
       const { error } = await supabase.auth.signOut();
